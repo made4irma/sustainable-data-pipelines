@@ -31,7 +31,7 @@ python generate_data.py            # crea transactions.csv (~10M righe)
 
 # 2. carica su PostgreSQL
 psql -c "CREATE TABLE transactions (tx_id BIGINT, ts TIMESTAMP, customer_id BIGINT, category TEXT, amount NUMERIC(10,2));"
-psql -c "\copy transactions FROM 'transactions.csv' WITH (FORMAT csv)"
+psql -c "\copy transactions FROM 'transactions.csv' WITH (FORMAT csv, HEADER true)"
 
 # 3. misura
 psql -c "\timing on" -f naive.sql
